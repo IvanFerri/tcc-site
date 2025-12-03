@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - Gráfica VIP</title>
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="admin-container">
+
+  <h1>Painel Administrativo - Gráfica VIP</h1>
+
+  <form id="form-produto" class="card">
+    <h2>Cadastrar Produto</h2>
+
+    <label>Nome do Produto</label>
+    <input type="text" id="nome" required>
+
+    <label>Descrição</label>
+    <textarea id="descricao" required></textarea>
+
+    <label>URL da Imagem</label>
+    <input type="text" id="imagem" required>
+
+    <button type="submit">Adicionar Produto</button>
+  </form>
+
+  <h2>Produtos Cadastrados</h2>
+  <div id="lista-produtos"></div>
+
+</div>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>
