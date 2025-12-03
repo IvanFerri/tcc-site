@@ -6,6 +6,7 @@
   <title>Login - Gráfica VIP</title>
   <link rel="stylesheet" href="assets/css/admin.css">
 </head>
+
 <body>
 
 <div class="login-container">
@@ -17,27 +18,44 @@
     <input type="text" id="usuario" required>
 
     <label>Senha</label>
-    <input type="password" id="senha" required>
+    <div style="display: flex; gap: 10px;">
+        <input type="password" id="senha" required style="flex:1">
+        <button type="button" onclick="toggleSenha()" style="padding: 10px;">👁</button>
+    </div>
 
     <button type="submit">Entrar</button>
+
+    <button type="button" onclick="irHome()" style="margin-top:10px; background:#999;">
+      Home
+    </button>
   </form>
 
 </div>
 
 <script>
+// Login simples (simulado)
 function entrar(e){
   e.preventDefault();
   
   const user = document.getElementById("usuario").value.trim();
   const pass = document.getElementById("senha").value.trim();
 
-  // Validação simples (simulada)
   if(user === "admin" && pass === "admin"){
-    alert("Login realizado com sucesso! (Simulação)");
     window.location.href = "admin.html";
   } else {
     alert("Usuário ou senha incorretos! (Simulação)");
   }
+}
+
+// Mostrar / ocultar senha
+function toggleSenha(){
+  const campo = document.getElementById("senha");
+  campo.type = campo.type === "password" ? "text" : "password";
+}
+
+// Botão Home
+function irHome(){
+  window.location.href = "index.html";
 }
 </script>
 
