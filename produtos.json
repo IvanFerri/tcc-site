@@ -13,5 +13,10 @@
     "nome": "Caderno Personalizado",
     "descricao": "Capa dura, 80 folhas, impressão colorida.",
     "imagem": "assets/images/produto3.jpg"
+  },
+  {
+  "nome": "Banner Personalizado",
+  "descricao": "Tamanho 90x120cm, lona 440g.",
+  "imagem": "assets/images/produto4.jpg"
   }
 ]
