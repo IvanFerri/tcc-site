@@ -10,7 +10,14 @@
 
 <div class="admin-container">
 
-  <h1>Painel Administrativo - Gráfica VIP</h1>
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <h1>Painel Administrativo - Gráfica VIP</h1>
+
+      <div>
+        <button onclick="irHome()" style="background:#999; margin-right:10px;">Home</button>
+        <button onclick="sair()" style="background:#ff4d4d;">Sair</button>
+      </div>
+  </div>
 
   <form id="form-produto" class="card">
     <h2>Cadastrar Produto</h2>
@@ -33,5 +40,16 @@
 </div>
 
 <script src="assets/js/admin.js"></script>
+
+<script>
+function irHome(){
+  window.location.href = "index.html";
+}
+
+function sair(){
+  window.location.href = "login.html";
+}
+</script>
+
 </body>
 </html>
