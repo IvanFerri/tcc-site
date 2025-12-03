@@ -1,9 +1,32 @@
-/* HEADER PADRÃO */
+/* ---------------------------------------------------
+   RESET BÁSICO
+--------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: #f5f6fa;
+  color: #333;
+}
+
+/* ---------------------------------------------------
+   HEADER PADRÃO (igual ao index)
+--------------------------------------------------- */
 header {
   background: #ffffff;
   padding: 15px 0;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin-bottom: 40px;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .header-flex {
@@ -14,6 +37,8 @@ header {
 
 .logo {
   cursor: pointer;
+  font-size: 26px;
+  font-weight: bold;
   color: #0f62fe;
 }
 
@@ -22,84 +47,61 @@ nav a {
   margin-left: 20px;
   color: #333;
   font-weight: 600;
+  font-size: 15px;
 }
 
 nav a:hover {
   color: #0f62fe;
 }
 
-/* Caixa do campo + botão de ver senha */
-.senha-wrapper {
-  display: flex;
-  gap: 10px;
-}
-
 /* ---------------------------------------------------
-   ESTILO GLOBAL
+   LOGIN
 --------------------------------------------------- */
-
-body {
-  background: #f5f6fa;
-  font-family: "Inter", sans-serif;
-  padding: 40px;
-  color: #333;
-  margin: 0;
-}
-
-/* ---------------------------------------------------
-   CONTAINERS PRINCIPAIS
---------------------------------------------------- */
-
-.admin-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
 .login-container {
   max-width: 350px;
-  margin: 0 auto;
-  margin-top: 120px;
+  margin: 40px auto;
 }
 
-/* ---------------------------------------------------
-   TÍTULOS
---------------------------------------------------- */
-
-h1 {
-  color: #0f62fe;
-  text-align: center;
-}
-
-h2 {
-  color: #0f62fe;
-  margin-bottom: 15px;
-}
-
-/* ---------------------------------------------------
-   CARDS / FORMULÁRIOS
---------------------------------------------------- */
-
-.card, .login-card {
+.login-card {
   background: #fff;
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .login-card h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #0f62fe;
+}
+
+.senha-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-eye {
+  width: auto;
+  padding: 10px 14px;
+  background: #0f62fe;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-eye:hover {
+  opacity: 0.9;
 }
 
 /* ---------------------------------------------------
-   INPUTS
+   FORMULÁRIOS GERAIS
 --------------------------------------------------- */
 
 input, textarea {
   width: 100%;
   margin-bottom: 12px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 15px;
@@ -111,10 +113,6 @@ input:focus, textarea:focus {
   box-shadow: 0 0 6px rgba(15,98,254, 0.3);
 }
 
-/* ---------------------------------------------------
-   BOTÕES
---------------------------------------------------- */
-
 button {
   width: 100%;
   padding: 12px;
@@ -125,6 +123,7 @@ button {
   cursor: pointer;
   font-size: 15px;
   transition: 0.2s;
+  margin-top: 10px;
 }
 
 button:hover {
@@ -135,27 +134,38 @@ button:active {
   transform: scale(0.97);
 }
 
-/* Botões menores (home / sair / mostrar senha) */
-button.pequeno {
-  width: auto;
-  display: inline-block;
-  padding: 10px 15px;
-  margin-right: 10px;
+/* ---------------------------------------------------
+   BOTÕES SECUNDÁRIOS (home/sair)
+--------------------------------------------------- */
+
+.btn-home {
+  background: #777;
 }
 
-/* Botão sair (vermelho) */
 .btn-sair {
   background: #ff4d4d;
 }
 
-.btn-home {
-  background: #999;
+/* ---------------------------------------------------
+   ADMIN PAGE
+--------------------------------------------------- */
+
+.admin-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Botão de mostrar senha */
-.btn-eye {
-  width: auto;
-  padding: 10px 14px;
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+
+.card h2 {
+  color: #0f62fe;
 }
 
 /* ---------------------------------------------------
@@ -166,14 +176,14 @@ button.pequeno {
   background: #fff;
   padding: 15px;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .produto-item img {
   width: 100px;
-  border-radius: 5px;
   margin-top: 8px;
+  border-radius: 6px;
 }
 
 .actions {
@@ -182,29 +192,28 @@ button.pequeno {
 
 .actions button {
   width: auto;
-  display: inline-block;
   padding: 8px 12px;
-  margin-right: 6px;
+  display: inline-block;
+  margin-right: 8px;
 }
 
 /* ---------------------------------------------------
    RESPONSIVIDADE
 --------------------------------------------------- */
 
-@media (max-width: 480px) {
-  body {
-    padding: 20px;
+@media (max-width: 600px) {
+
+  nav a {
+    margin-left: 10px;
+    font-size: 14px;
   }
 
-  .login-container {
-    margin-top: 60px;
+  .produto-item img {
+    width: 70px;
   }
 
-  h1 {
-    font-size: 22px;
+  .container {
+    width: 92%;
   }
 
-  .actions button {
-    margin-bottom: 5px;
-  }
 }
