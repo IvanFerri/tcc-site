@@ -28,15 +28,15 @@
 function entrar(e){
   e.preventDefault();
   
-  const user = document.getElementById("usuario").value;
-  const pass = document.getElementById("senha").value;
+  const user = document.getElementById("usuario").value.trim();
+  const pass = document.getElementById("senha").value.trim();
 
-  // Login fake apenas para demonstração
-  if(user === "admin" && pass === "123"){
-    alert("Login realizado com sucesso! (Simulado)");
+  // Validação simples (simulada)
+  if(user === "admin" && pass === "admin"){
+    alert("Login realizado com sucesso! (Simulação)");
     window.location.href = "admin.html";
   } else {
-    alert("Usuário ou senha inválidos (simulação)");
+    alert("Usuário ou senha incorretos! (Simulação)");
   }
 }
 </script>
