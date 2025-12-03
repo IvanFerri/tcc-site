@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Gráfica VIP</title>
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="login-container">
+
+  <form class="login-card" onsubmit="entrar(event)">
+    <h2>Acesso Restrito</h2>
+
+    <label>Usuário</label>
+    <input type="text" id="usuario" required>
+
+    <label>Senha</label>
+    <input type="password" id="senha" required>
+
+    <button type="submit">Entrar</button>
+  </form>
+
+</div>
+
+<script>
+function entrar(e){
+  e.preventDefault();
+  
+  const user = document.getElementById("usuario").value;
+  const pass = document.getElementById("senha").value;
+
+  // Login fake apenas para demonstração
+  if(user === "admin" && pass === "123"){
+    alert("Login realizado com sucesso! (Simulado)");
+    window.location.href = "admin.html";
+  } else {
+    alert("Usuário ou senha inválidos (simulação)");
+  }
+}
+</script>
+
+</body>
+</html>
