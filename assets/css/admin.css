@@ -75,41 +75,34 @@ nav a:hover {
   color: #0f62fe;
 }
 
-/* WRAPPER da senha com botão absoluto */
+/* -------------------------
+   SENHA (Solução simples)
+--------------------------- */
 .senha-wrapper {
-  position: relative;
-  width: 100%;
-  margin-bottom: 12px;
+  display: flex;
+  align-items: center;  /* Centraliza verticalmente */
+  gap: 8px;
 }
 
-/* Campo da senha */
 .senha-wrapper input {
-  width: 100%;
+  flex: 1;
   padding: 12px;
-  padding-right: 48px; /* espaço para o botão */
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 15px;
-  outline: none;
 }
 
-/* Botão de mostrar/ocultar senha */
 .btn-eye {
-  position: absolute;
-  right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: calc(100% - 8px);
-  min-width: 40px;
-  padding: 0 10px;
+  padding: 0 12px;
+  height: 44px;    /* mesma altura visual do input */
   background: #0f62fe;
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .btn-eye:hover {
@@ -125,8 +118,8 @@ input, textarea {
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 15px;
-  outline: none;
   margin-bottom: 12px;
+  outline: none;
 }
 
 input:focus, textarea:focus {
@@ -154,7 +147,7 @@ button:active {
   transform: scale(0.97);
 }
 
-/* Botões secundários */
+/* Botões especiais */
 .btn-home {
   background: #777;
 }
@@ -169,4 +162,66 @@ button:active {
 .admin-container {
   width: 90%;
   max-width: 800px;
-  margin: 0 au
+  margin: 0 auto 60px auto;
+}
+
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+
+.card h2 {
+  color: #0f62fe;
+  margin-bottom: 15px;
+}
+
+/* ---------------------------------------------------
+   LISTA DE PRODUTOS
+--------------------------------------------------- */
+.produto-item {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.produto-item img {
+  width: 100px;
+  margin-top: 8px;
+  border-radius: 6px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.actions button {
+  width: auto;
+  padding: 8px 12px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* ---------------------------------------------------
+   RESPONSIVIDADE
+--------------------------------------------------- */
+@media (max-width: 600px) {
+
+  nav a {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  .produto-item img {
+    width: 70px;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+}
