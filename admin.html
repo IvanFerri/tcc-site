@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel Administrativo - Gráfica VIP</title>
+  <title>Painel Admin - Gráfica VIP</title>
   <link rel="stylesheet" href="assets/css/admin.css">
 </head>
+
 <body>
 
-<div class="admin-container">
+<header>
+  <div class="container header-flex">
+    <h1 class="logo" onclick="window.location.href='index.html'">Gráfica VIP</h1>
 
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-      <h1>Painel Administrativo - Gráfica VIP</h1>
-
-      <div>
-        <button onclick="irHome()" style="background:#999; margin-right:10px;">Home</button>
-        <button onclick="sair()" style="background:#ff4d4d;">Sair</button>
-      </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Sair</a>
+    </nav>
   </div>
+</header>
+
+<div class="admin-container">
 
   <form id="form-produto" class="card">
     <h2>Cadastrar Produto</h2>
@@ -40,16 +43,6 @@
 </div>
 
 <script src="assets/js/admin.js"></script>
-
-<script>
-function irHome(){
-  window.location.href = "index.html";
-}
-
-function sair(){
-  window.location.href = "login.html";
-}
-</script>
 
 </body>
 </html>
