@@ -10,6 +10,42 @@ body {
   margin: 0;
 }
 
+/* HEADER PADRÃO */
+header {
+  background: #ffffff;
+  padding: 15px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  cursor: pointer;
+  color: #0f62fe;
+}
+
+nav a {
+  text-decoration: none;
+  margin-left: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: #0f62fe;
+}
+
+/* Caixa do campo + botão de ver senha */
+.senha-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
 /* ---------------------------------------------------
    CONTAINERS PRINCIPAIS
 --------------------------------------------------- */
