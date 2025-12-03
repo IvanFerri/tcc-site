@@ -1,27 +1,64 @@
+/* ---------------------------------------------------
+   ESTILO GLOBAL
+--------------------------------------------------- */
+
 body {
   background: #f5f6fa;
   font-family: "Inter", sans-serif;
   padding: 40px;
   color: #333;
+  margin: 0;
 }
+
+/* ---------------------------------------------------
+   CONTAINERS PRINCIPAIS
+--------------------------------------------------- */
 
 .admin-container {
   max-width: 800px;
   margin: 0 auto;
 }
 
+.login-container {
+  max-width: 350px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+
+/* ---------------------------------------------------
+   TÍTULOS
+--------------------------------------------------- */
+
 h1 {
   color: #0f62fe;
   text-align: center;
 }
 
-.card {
+h2 {
+  color: #0f62fe;
+  margin-bottom: 15px;
+}
+
+/* ---------------------------------------------------
+   CARDS / FORMULÁRIOS
+--------------------------------------------------- */
+
+.card, .login-card {
   background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   margin-bottom: 30px;
 }
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ---------------------------------------------------
+   INPUTS
+--------------------------------------------------- */
 
 input, textarea {
   width: 100%;
@@ -29,7 +66,18 @@ input, textarea {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 15px;
+  outline: none;
 }
+
+input:focus, textarea:focus {
+  border-color: #0f62fe;
+  box-shadow: 0 0 6px rgba(15,98,254, 0.3);
+}
+
+/* ---------------------------------------------------
+   BOTÕES
+--------------------------------------------------- */
 
 button {
   width: 100%;
@@ -40,11 +88,43 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 15px;
+  transition: 0.2s;
 }
 
 button:hover {
   opacity: 0.9;
 }
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Botões menores (home / sair / mostrar senha) */
+button.pequeno {
+  width: auto;
+  display: inline-block;
+  padding: 10px 15px;
+  margin-right: 10px;
+}
+
+/* Botão sair (vermelho) */
+.btn-sair {
+  background: #ff4d4d;
+}
+
+.btn-home {
+  background: #999;
+}
+
+/* Botão de mostrar senha */
+.btn-eye {
+  width: auto;
+  padding: 10px 14px;
+}
+
+/* ---------------------------------------------------
+   LISTA DE PRODUTOS
+--------------------------------------------------- */
 
 .produto-item {
   background: #fff;
@@ -57,6 +137,7 @@ button:hover {
 .produto-item img {
   width: 100px;
   border-radius: 5px;
+  margin-top: 8px;
 }
 
 .actions {
@@ -70,22 +151,24 @@ button:hover {
   margin-right: 6px;
 }
 
-/*css do login:*/
-.login-container {
-  max-width: 350px;
-  margin: 0 auto;
-  margin-top: 120px;
-}
+/* ---------------------------------------------------
+   RESPONSIVIDADE
+--------------------------------------------------- */
 
-.login-card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
+@media (max-width: 480px) {
+  body {
+    padding: 20px;
+  }
 
-.login-card h2 {
-  text-align: center;
-  color: #0f62fe;
-  margin-bottom: 20px;
+  .login-container {
+    margin-top: 60px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .actions button {
+    margin-bottom: 5px;
+  }
 }
