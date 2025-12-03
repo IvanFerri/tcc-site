@@ -69,3 +69,23 @@ button:hover {
   padding: 8px 12px;
   margin-right: 6px;
 }
+
+/*css do login:*/
+.login-container {
+  max-width: 350px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+
+.login-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.login-card h2 {
+  text-align: center;
+  color: #0f62fe;
+  margin-bottom: 20px;
+}
