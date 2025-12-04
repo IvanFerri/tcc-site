@@ -76,12 +76,12 @@ nav a:hover {
 }
 
 .senha-wrapper {
-  display: flex;
+  /*display: flex;*/
   gap: 10px;
 }
 
 .btn-eye {
-  width: auto;
+  /*width: auto;*/
   padding: 10px 14px;
   background: #0f62fe;
   color: #fff;
