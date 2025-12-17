@@ -2,47 +2,49 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <title>Painel Administrativo - Gráfica VIP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel Admin - Gráfica VIP</title>
   <link rel="stylesheet" href="assets/css/admin.css">
 </head>
-
 <body>
 
-<header>
-  <div class="container header-flex">
-    <h1 class="logo" onclick="window.location.href='index.html'">Gráfica VIP</h1>
+  <!-- Cabeçalho -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">
+        <a href="index.html" style="text-decoration:none; color:#0f62fe;">
+          Gráfica VIP
+        </a>
+      </h1>
+      <nav class="nav">
+        <button onclick="sair()">Sair</button>
+      </nav>
+    </div>
+  </header>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="login.html">Sair</a>
-    </nav>
-  </div>
-</header>
+  <!-- Conteúdo -->
+  <main class="container">
+    <h2>Painel Administrativo</h2>
 
-<div class="admin-container">
+    <!-- Cadastro de Produto -->
+    <section class="card">
+      <h3>Cadastrar Produto</h3>
 
-  <form id="form-produto" class="card">
-    <h2>Cadastrar Produto</h2>
+      <input type="text" id="nome" placeholder="Nome do produto">
+      <input type="text" id="imagem" placeholder="URL da imagem">
+      <textarea id="descricao" placeholder="Descrição do produto"></textarea>
 
-    <label>Nome do Produto</label>
-    <input type="text" id="nome" required>
+      <button onclick="salvarProduto()">Salvar Produto</button>
+    </section>
 
-    <label>Descrição</label>
-    <textarea id="descricao" required></textarea>
+    <!-- Lista de Produtos -->
+    <section class="card">
+      <h3>Produtos Cadastrados</h3>
+      <ul id="listaProdutos"></ul>
+    </section>
+  </main>
 
-    <label>URL da Imagem</label>
-    <input type="text" id="imagem" required>
-
-    <button type="submit">Adicionar Produto</button>
-  </form>
-
-  <h2>Produtos Cadastrados</h2>
-  <div id="lista-produtos"></div>
-
-</div>
-
-<script src="assets/js/admin.js"></script>
-<script type="module" src="assets/js/main.js"></script>
+  <!-- JS -->
+  <script type="module" src="assets/js/admin.js"></script>
 </body>
 </html>
