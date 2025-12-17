@@ -12,7 +12,10 @@ async function carregarProdutos() {
       <div class="produto">
         <img src="${p.imagem}">
         <h3>${p.nome}</h3>
-        <a href="produto.html?id=${doc.id}">Ver detalhes</a>
+        <a href="produto.html?id=${doc.id}" class="btn-detalhes">
+          Ver detalhes
+        </a>
+
       </div>
     `;
   });
@@ -24,3 +27,4 @@ document.getElementById("whatsapp-btn2").href =
   "https://wa.me/5567999883923";
 
 carregarProdutos();
+
