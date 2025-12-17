@@ -5,12 +5,12 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/9.23.0/firebase
 
 // CONFIGURAÇÃO DO SEU FIREBASE
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
+  apiKey: "AIzaSyCK8zeZPCADspaeme6_QIkshectb_3nneA",
   authDomain: "grafica-vip-tcc.firebaseapp.com",
   projectId: "grafica-vip-tcc",
-  storageBucket: "grafica-vip-tcc.appspot.com",
-  messagingSenderId: "XXXX",
-  appId: "XXXX"
+  storageBucket: "grafica-vip-tcc.firebasestorage.app",
+  messagingSenderId: "768607783576",
+  appId: "1:768607783576:web:2064c2d88a141ec0b59eed"
 };
 
 // Inicializa Firebase
