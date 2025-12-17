@@ -1,8 +1,6 @@
 import { auth, db } from "./firebase.js";
-import {
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+import { onAuthStateChanged, signOut } from
+  "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
 import {
   collection,
@@ -12,7 +10,6 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-// Protege admin
 onAuthStateChanged(auth, user => {
   if (!user) {
     window.location.href = "login.html";
@@ -21,14 +18,12 @@ onAuthStateChanged(auth, user => {
   }
 });
 
-// Logout
 window.sair = function () {
   signOut(auth).then(() => {
     window.location.href = "login.html";
   });
 };
 
-// Cadastrar produto
 window.salvarProduto = async function () {
   await addDoc(collection(db, "produtos"), {
     nome: nome.value,
@@ -41,7 +36,6 @@ window.salvarProduto = async function () {
   carregarProdutos();
 };
 
-// Listar produtos
 async function carregarProdutos() {
   const lista = document.getElementById("listaProdutos");
   lista.innerHTML = "";
@@ -57,7 +51,6 @@ async function carregarProdutos() {
   });
 }
 
-// Excluir produto
 window.excluirProduto = async function (id) {
   await deleteDoc(doc(db, "produtos", id));
   carregarProdutos();
