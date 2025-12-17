@@ -14,3 +14,8 @@ window.login = function () {
       alert("Usuário ou senha inválidos");
     });
 };
+
+window.toggleSenha = function () {
+  const campo = document.getElementById("senha");
+  campo.type = campo.type === "password" ? "text" : "password";
+};
