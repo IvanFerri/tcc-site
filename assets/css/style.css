@@ -170,4 +170,19 @@
     padding: 1rem 0;
     margin-top: 2rem;
   }
-  
+.btn-detalhes {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background-color: #0f62fe;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.btn-detalhes:hover {
+  background-color: #0043ce;
+}
