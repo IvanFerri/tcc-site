@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
   <title>Detalhes do Produto</title>
 </head>
 <body>
 
 <h1 id="nome"></h1>
-<img id="imagem">
+<img id="imagem" width="300">
 <p id="descricao"></p>
 
 <script type="module">
@@ -15,9 +16,8 @@ import { doc, getDoc } from
   "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
 const id = new URLSearchParams(window.location.search).get("id");
-const ref = doc(db, "produtos", id);
 
-getDoc(ref).then(docSnap => {
+getDoc(doc(db, "produtos", id)).then(docSnap => {
   const p = docSnap.data();
   nome.innerText = p.nome;
   descricao.innerText = p.descricao;
