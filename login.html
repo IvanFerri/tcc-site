@@ -42,24 +42,7 @@
 
 </div>
 
-<script>
-function entrar(e){
-  e.preventDefault();
+<script type="module" src="assets/js/login.js"></script>
 
-  const user = document.getElementById("usuario").value.trim();
-  const pass = document.getElementById("senha").value.trim();
-
-  /*if(user === "admin" && pass === "admin"){
-    window.location.href = "admin.html";
-  } else {
-    alert("Usuário ou senha incorretos!");
-  }*/
-}
-
-function toggleSenha(){
-  const campo = document.getElementById("senha");
-  campo.type = campo.type === "password" ? "text" : "password";
-}
-</script>
 </body>
 </html>
