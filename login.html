@@ -12,7 +12,6 @@
 <header>
   <div class="container header-flex">
     <h1 class="logo" onclick="window.location.href='index.html'">Gráfica VIP</h1>
-
     <nav>
       <a href="index.html">Home</a>
       <a href="login.html">Admin</a>
@@ -21,12 +20,11 @@
 </header>
 
 <div class="login-container">
-
-  <form class="login-card" onsubmit="entrar(event)">
+  <form class="login-card" onsubmit="login(); return false;">
     <h2>Acesso Restrito</h2>
 
     <label>Usuário</label>
-    <input type="text" id="usuario" required>
+    <input type="email" id="email" required>
 
     <label>Senha</label>
     <div class="senha-wrapper">
@@ -34,12 +32,8 @@
       <button type="button" class="btn-eye" onclick="toggleSenha()">👁</button>
     </div>
 
-    <button onclick="login()">Entrar</button>
-
-    <script type="module" src="assets/js/login.js"></script>
-
+    <button type="submit">Entrar</button>
   </form>
-
 </div>
 
 <script type="module" src="assets/js/login.js"></script>
