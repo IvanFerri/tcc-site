@@ -1,71 +1,64 @@
-const listaDiv = document.getElementById("lista-produtos");
-let produtosFake = [];
+import { auth, db } from "./firebase.js";
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-// Carrega produtos simulados ao abrir o painel
-function carregarSimulados() {
-  fetch("../produtos.json")
-    .then(res => res.json())
-    .then(data => {
-      produtosFake = data;
-      renderizar();
-    });
-}
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-carregarSimulados();
-
-// Adicionar produto visualmente
-document.getElementById("form-produto").addEventListener("submit", e => {
-  e.preventDefault();
-
-  const nome = document.getElementById("nome").value;
-  const descricao = document.getElementById("descricao").value;
-  const imagem = document.getElementById("imagem").value;
-
-  produtosFake.push({ nome, descricao, imagem });
-
-  renderizar();
-  alert("Produto adicionado COM SUCESSO (simulação)!");
-
-  e.target.reset();
+// Protege admin
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    window.location.href = "login.html";
+  } else {
+    carregarProdutos();
+  }
 });
 
-// Renderizar lista
-function renderizar() {
-  listaDiv.innerHTML = "";
+// Logout
+window.sair = function () {
+  signOut(auth).then(() => {
+    window.location.href = "login.html";
+  });
+};
 
-  produtosFake.forEach((p, index) => {
-    const item = document.createElement("div");
-    item.classList.add("produto-item");
+// Cadastrar produto
+window.salvarProduto = async function () {
+  await addDoc(collection(db, "produtos"), {
+    nome: nome.value,
+    descricao: descricao.value,
+    imagem: imagem.value,
+    criadoEm: new Date()
+  });
 
-    item.innerHTML = `
-      <strong>${p.nome}</strong><br>
-      <img src="${p.imagem}" alt=""><br>
-      <small>${p.descricao}</small>
+  alert("Produto cadastrado!");
+  carregarProdutos();
+};
 
-      <div class="actions">
-        <button onclick="editar(${index})">Editar</button>
-        <button onclick="remover(${index})">Excluir</button>
-      </div>
+// Listar produtos
+async function carregarProdutos() {
+  const lista = document.getElementById("listaProdutos");
+  lista.innerHTML = "";
+
+  const snapshot = await getDocs(collection(db, "produtos"));
+  snapshot.forEach(docSnap => {
+    lista.innerHTML += `
+      <li>
+        ${docSnap.data().nome}
+        <button onclick="excluirProduto('${docSnap.id}')">Excluir</button>
+      </li>
     `;
-
-    listaDiv.appendChild(item);
   });
 }
 
-function remover(index) {
-  if (confirm("Deseja realmente remover? (simulação)")) {
-    produtosFake.splice(index, 1);
-    renderizar();
-  }
-}
-
-function editar(index) {
-  const novoNome = prompt("Novo nome:", produtosFake[index].nome);
-  if (novoNome) produtosFake[index].nome = novoNome;
-
-  const novaDesc = prompt("Nova descrição:", produtosFake[index].descricao);
-  if (novaDesc) produtosFake[index].descricao = novaDesc;
-
-  renderizar();
-  alert("Produto editado (simulação)!");
-}
+// Excluir produto
+window.excluirProduto = async function (id) {
+  await deleteDoc(doc(db, "produtos", id));
+  carregarProdutos();
+};
