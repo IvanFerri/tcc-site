@@ -52,11 +52,16 @@
 
   <!-- Contato -->
   <section id="contato" class="container contato">
-    <h3>Contato</h3>
-    <a id="whatsapp-btn2" class="cta" target="_blank">
-      Solicitar orçamento
-    </a>
-  </section>
+  <h3>Entre em Contato</h3>
+  <p>Envie sua mensagem ou solicite um orçamento.</p>
+
+  <form id="form-contato" class="form-contato">
+    <input type="text" id="nome" placeholder="Seu nome" required>
+    <input type="email" id="email" placeholder="Seu e-mail" required>
+    <textarea id="mensagem" placeholder="Descreva seu pedido" required></textarea>
+    <button type="submit">Enviar Mensagem</button>
+  </form>
+</section>
 
   <!-- Rodapé -->
   <footer class="site-footer">
@@ -74,3 +79,4 @@
   <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
+
