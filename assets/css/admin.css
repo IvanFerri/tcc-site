@@ -217,3 +217,11 @@ button:active {
   }
 
 }
+
+.mensagem-card {
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
