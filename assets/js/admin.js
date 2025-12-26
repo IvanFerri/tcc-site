@@ -55,3 +55,50 @@ window.excluirProduto = async function (id) {
   await deleteDoc(doc(db, "produtos", id));
   carregarProdutos();
 };
+
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+const listaMensagens = document.getElementById("mensagens-lista");
+
+async function carregarMensagens() {
+  if (!listaMensagens) return;
+
+  const q = query(
+    collection(db, "mensagens"),
+    orderBy("data", "desc")
+  );
+
+  const snapshot = await getDocs(q);
+
+  if (snapshot.empty) {
+    listaMensagens.innerHTML = "<p>Nenhuma mensagem recebida.</p>";
+    return;
+  }
+
+  listaMensagens.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const m = doc.data();
+
+    const div = document.createElement("div");
+    div.classList.add("mensagem-card");
+
+    div.innerHTML = `
+      <strong>Nome:</strong> ${m.nome}<br>
+      <strong>Email:</strong> ${m.email}<br>
+      <strong>Mensagem:</strong>
+      <p>${m.mensagem}</p>
+      <small>${m.data?.toDate().toLocaleString("pt-BR")}</small>
+      <hr>
+    `;
+
+    listaMensagens.appendChild(div);
+  });
+}
+
+carregarMensagens();
