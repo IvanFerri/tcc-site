@@ -56,6 +56,7 @@ window.excluirProduto = async function (id) {
   carregarProdutos();
 };
 
+import { db } from "./firebase.js";
 import {
   collection,
   getDocs,
@@ -63,42 +64,45 @@ import {
   orderBy
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-const listaMensagens = document.getElementById("mensagens-lista");
-
 async function carregarMensagens() {
-  if (!listaMensagens) return;
+  const lista = document.getElementById("mensagens-lista");
+
+  if (!lista) {
+    console.warn("mensagens-lista não encontrado");
+    return;
+  }
 
   const q = query(
     collection(db, "mensagens"),
     orderBy("data", "desc")
   );
 
-  const snapshot = await getDocs(q);
+  try {
+    const snapshot = await getDocs(q);
 
-  if (snapshot.empty) {
-    listaMensagens.innerHTML = "<p>Nenhuma mensagem recebida.</p>";
-    return;
+    if (snapshot.empty) {
+      lista.innerHTML = "<p>Nenhuma mensagem recebida.</p>";
+      return;
+    }
+
+    lista.innerHTML = "";
+
+    snapshot.forEach(doc => {
+      const m = doc.data();
+
+      lista.innerHTML += `
+        <div class="mensagem-card">
+          <strong>Nome:</strong> ${m.nome}<br>
+          <strong>Email:</strong> ${m.email}<br>
+          <p>${m.mensagem}</p>
+          <small>${m.data?.toDate().toLocaleString("pt-BR")}</small>
+        </div>
+      `;
+    });
+
+  } catch (error) {
+    console.error("Erro ao carregar mensagens:", error);
   }
-
-  listaMensagens.innerHTML = "";
-
-  snapshot.forEach(doc => {
-    const m = doc.data();
-
-    const div = document.createElement("div");
-    div.classList.add("mensagem-card");
-
-    div.innerHTML = `
-      <strong>Nome:</strong> ${m.nome}<br>
-      <strong>Email:</strong> ${m.email}<br>
-      <strong>Mensagem:</strong>
-      <p>${m.mensagem}</p>
-      <small>${m.data?.toDate().toLocaleString("pt-BR")}</small>
-      <hr>
-    `;
-
-    listaMensagens.appendChild(div);
-  });
 }
 
-carregarMensagens();
+document.addEventListener("DOMContentLoaded", carregarMensagens);
