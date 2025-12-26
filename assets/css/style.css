@@ -186,3 +186,31 @@
 .btn-detalhes:hover {
   background-color: #0043ce;
 }
+
+.form-contato {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-contato input,
+.form-contato textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form-contato button {
+  background-color: #0f62fe;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-contato button:hover {
+  background-color: #0043ce;
+}
+
