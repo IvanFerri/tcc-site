@@ -1,82 +1,230 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel Administrativo - Gráfica VIP</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 
 <body>
 
-<!-- Cabeçalho -->
-<header>
-  <div class="container header-flex">
-    <h1 class="logo" onclick="window.location.href='index.html'">
-      Gráfica VIP
-    </h1>
-
-    <nav>
-      <a href="index.html">Home</a>
-      <button class="btn-sair" onclick="sair()">Sair</button>
-    </nav>
-  </div>
-</header>
-
-<main class="container">
-
-  <!-- Painel -->
-  <h2>Painel Administrativo</h2>
-
-  <!-- Cadastro de Produto -->
-  <section class="admin-card">
-    <h3>Cadastrar Produto</h3>
-
-    <form id="form-produto">
-      <input
-        type="text"
-        id="nome-produto"
-        placeholder="Nome do produto"
-        required
-      >
-
-      <input
-        type="text"
-        id="imagem-produto"
-        placeholder="URL da imagem"
-        required
-      >
-
-      <textarea
-        id="descricao-produto"
-        placeholder="Descrição do produto"
-        required
-      ></textarea>
-
-      <button type="submit">Salvar Produto</button>
-    </form>
-  </section>
-
-  <!-- Lista de Produtos -->
-  <section class="admin-card">
-    <h3>Produtos Cadastrados</h3>
-    <div id="lista-produtos">
-      <p>Carregando produtos...</p>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold text-success" href="index.html">
+        <i class="bi bi-printer-fill me-2"></i>Gráfica VIP
+      </a>
+      
+      <div class="d-flex align-items-center gap-3">
+        <a href="index.html" class="btn btn-outline-secondary btn-sm">
+          <i class="bi bi-house me-1"></i>Ver Site
+        </a>
+        <button class="btn btn-danger btn-sm" onclick="sair()">
+          <i class="bi bi-box-arrow-right me-1"></i>Sair
+        </button>
+      </div>
     </div>
-  </section>
+  </nav>
 
-  <!-- Mensagens -->
-  <section class="admin-card">
-    <h3>Mensagens Recebidas</h3>
-    <div id="mensagens-lista">
-      <p>Carregando mensagens...</p>
+  <!-- Main Content -->
+  <main class="py-5 mt-5">
+    <div class="container-fluid px-4 py-3">
+      
+      <h2 class="fw-bold mb-4">
+        <i class="bi bi-speedometer2 text-success me-2"></i>Painel Administrativo
+      </h2>
+
+      <!-- Dashboard Stats -->
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="card bg-success bg-opacity-10 border-success">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                  <i class="bi bi-box-seam display-5 text-success"></i>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <h3 class="mb-0 fw-bold" id="statTotalProdutos">0</h3>
+                  <p class="text-body-secondary mb-0">Produtos Cadastrados</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card bg-primary bg-opacity-10 border-primary">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                  <i class="bi bi-envelope display-5 text-primary"></i>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <h3 class="mb-0 fw-bold" id="statTotalMensagens">0</h3>
+                  <p class="text-body-secondary mb-0">Mensagens Recebidas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card bg-warning bg-opacity-10 border-warning">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                  <i class="bi bi-envelope-exclamation display-5 text-warning"></i>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <h3 class="mb-0 fw-bold" id="statNaoLidas">0</h3>
+                  <p class="text-body-secondary mb-0">Mensagens Não Lidas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Cadastro de Produto -->
+        <div class="col-lg-5">
+          <div class="card shadow-sm">
+            <div class="card-header bg-success bg-opacity-10">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-plus-circle text-success me-2"></i>
+                <span id="formTitle">Cadastrar Produto</span>
+              </h5>
+            </div>
+            <div class="card-body">
+              <form id="formProduto">
+                <input type="hidden" id="produtoId">
+                
+                <div class="mb-3">
+                  <label for="nomeProduto" class="form-label">Nome do Produto</label>
+                  <input type="text" class="form-control" id="nomeProduto" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="categoriaProduto" class="form-label">Categoria</label>
+                  <select class="form-select" id="categoriaProduto" required>
+                    <option value="">Selecione...</option>
+                    <option value="cartoes">Cartões</option>
+                    <option value="adesivos">Adesivos</option>
+                    <option value="cadernos">Cadernos</option>
+                    <option value="outros">Outros</option>
+                  </select>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="imagemProduto" class="form-label">URL da Imagem Principal</label>
+                  <input type="url" class="form-control" id="imagemProduto" required>
+                  <div class="form-text">Cole o link da imagem</div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="imagensExtras" class="form-label">Imagens Extras (opcional)</label>
+                  <input type="text" class="form-control" id="imagensExtras">
+                  <div class="form-text">URLs separadas por vírgula</div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="descricaoProduto" class="form-label">Descrição</label>
+                  <textarea class="form-control" id="descricaoProduto" rows="3" required></textarea>
+                </div>
+                
+                <!-- Image Preview -->
+                <div class="mb-3 d-none" id="imagePreviewContainer">
+                  <label class="form-label">Pré-visualização</label>
+                  <img id="imagePreview" class="img-fluid rounded border" style="max-height: 150px;">
+                </div>
+                
+                <div class="d-flex gap-2">
+                  <button type="submit" class="btn btn-success flex-fill" id="btnSalvar">
+                    <i class="bi bi-check-lg me-1"></i>Salvar Produto
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary d-none" id="btnCancelar" onclick="cancelarEdicao()">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista de Produtos -->
+        <div class="col-lg-7">
+          <div class="card shadow-sm">
+            <div class="card-header bg-body-tertiary d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-list-ul text-success me-2"></i>Produtos Cadastrados
+              </h5>
+              <span class="badge bg-success" id="badgeProdutos">0</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead class="table-dark">
+                    <tr>
+                      <th style="width: 60px;">Img</th>
+                      <th>Nome</th>
+                      <th>Categoria</th>
+                      <th style="width: 120px;">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody id="listaProdutos">
+                    <tr>
+                      <td colspan="4" class="text-center py-4">
+                        <div class="spinner-border spinner-border-sm text-success"></div>
+                        <span class="ms-2">Carregando...</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensagens -->
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="card shadow-sm">
+            <div class="card-header bg-body-tertiary d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-envelope text-success me-2"></i>Mensagens Recebidas
+              </h5>
+              <span class="badge bg-primary" id="badgeMensagens">0</span>
+            </div>
+            <div class="card-body">
+              <div class="accordion" id="accordionMensagens">
+                <div id="listaMensagens">
+                  <div class="text-center py-4">
+                    <div class="spinner-border spinner-border-sm text-success"></div>
+                    <span class="ms-2">Carregando mensagens...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </main>
 
-</main>
-
-<!-- Script -->
-<script type="module" src="assets/js/admin.js"></script>
-
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- App Script -->
+  <script type="module" src="assets/js/admin.js"></script>
 </body>
 </html>

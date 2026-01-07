@@ -1,42 +1,140 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Gráfica VIP</title>
-  <link rel="stylesheet" href="assets/css/admin.css">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <style>
+    html, body {
+      height: 100%;
+    }
+    
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    }
+    
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .btn-password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--bs-secondary-color);
+      cursor: pointer;
+      z-index: 10;
+    }
+    
+    .btn-password-toggle:hover {
+      color: var(--bs-body-color);
+    }
+    
+    .password-wrapper {
+      position: relative;
+    }
+    
+    .password-wrapper .form-control {
+      padding-right: 45px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container header-flex">
-    <h1 class="logo" onclick="window.location.href='index.html'">Gráfica VIP</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="login.html">Admin</a>
-    </nav>
-  </div>
-</header>
-
-<div class="login-container">
-  <form class="login-card" onsubmit="login(); return false;">
-    <h2>Acesso Restrito</h2>
-
-    <label>Usuário</label>
-    <input type="email" id="email" required>
-
-    <label>Senha</label>
-    <div class="senha-wrapper">
-      <input type="password" id="senha" required>
-      <button type="button" class="btn-eye" onclick="toggleSenha()">👁</button>
+  <div class="login-card p-4">
+    <div class="card shadow-lg border-0">
+      <div class="card-body p-4 p-md-5">
+        
+        <!-- Logo -->
+        <div class="text-center mb-4">
+          <a href="index.html" class="text-decoration-none">
+            <i class="bi bi-printer-fill display-4 text-success"></i>
+            <h4 class="fw-bold text-success mt-2 mb-0">Gráfica VIP</h4>
+          </a>
+          <p class="text-body-secondary mt-2">Área Administrativa</p>
+        </div>
+        
+        <!-- Form -->
+        <form id="formLogin">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+            <label for="email"><i class="bi bi-envelope me-2"></i>E-mail</label>
+          </div>
+          
+          <div class="form-floating mb-4">
+            <div class="password-wrapper">
+              <input type="password" class="form-control" id="senha" placeholder="Senha" required>
+              <button type="button" class="btn-password-toggle" onclick="toggleSenha()" title="Mostrar/ocultar senha">
+                <i class="bi bi-eye" id="eyeIcon"></i>
+              </button>
+            </div>
+            <label for="senha" style="position: relative; top: -48px; left: 0;">
+              <i class="bi bi-lock me-2"></i>Senha
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-success btn-lg w-100 mb-3" id="btnLogin">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Entrar
+          </button>
+          
+          <div class="text-center">
+            <a href="index.html" class="text-body-secondary text-decoration-none">
+              <i class="bi bi-arrow-left me-1"></i>Voltar ao site
+            </a>
+          </div>
+        </form>
+        
+      </div>
     </div>
+    
+    <!-- Footer -->
+    <p class="text-center text-body-secondary mt-4 small">
+      © 2025 Gráfica VIP — Projeto TCC
+    </p>
+  </div>
 
-    <button type="submit">Entrar</button>
-  </form>
-</div>
-
-<script type="module" src="assets/js/login.js"></script>
-
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- App Script -->
+  <script type="module" src="assets/js/login.js"></script>
+  
+  <script>
+    function toggleSenha() {
+      const senhaInput = document.getElementById('senha');
+      const eyeIcon = document.getElementById('eyeIcon');
+      
+      if (senhaInput.type === 'password') {
+        senhaInput.type = 'text';
+        eyeIcon.classList.remove('bi-eye');
+        eyeIcon.classList.add('bi-eye-slash');
+      } else {
+        senhaInput.type = 'password';
+        eyeIcon.classList.remove('bi-eye-slash');
+        eyeIcon.classList.add('bi-eye');
+      }
+    }
+  </script>
 </body>
 </html>
