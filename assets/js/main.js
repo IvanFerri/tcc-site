@@ -36,3 +36,17 @@ async function carregarProdutos() {
 }
 
 carregarProdutos();
+
+// Botões WhatsApp
+const whatsappLink = "https://wa.me/5567999883923";
+
+const btnWhatsapp1 = document.getElementById("whatsapp-btn");
+const btnWhatsapp2 = document.getElementById("whatsapp-btn2");
+
+if (btnWhatsapp1) {
+  btnWhatsapp1.href = whatsappLink;
+}
+
+if (btnWhatsapp2) {
+  btnWhatsapp2.href = whatsappLink;
+}
