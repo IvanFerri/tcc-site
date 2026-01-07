@@ -37,8 +37,14 @@ async function carregarProdutos() {
 
 carregarProdutos();
 
-// Botões WhatsApp
-const whatsappLink = "https://wa.me/5567999883923";
+// Botões WhatsApp com mensagem automática
+const numeroWhatsapp = "5567999883923";
+
+const mensagem = encodeURIComponent(
+  "Olá! Vim pelo site da Gráfica VIP e gostaria de solicitar um orçamento."
+);
+
+const whatsappLink = `https://wa.me/${numeroWhatsapp}?text=${mensagem}`;
 
 const btnWhatsapp1 = document.getElementById("whatsapp-btn");
 const btnWhatsapp2 = document.getElementById("whatsapp-btn2");
@@ -50,3 +56,4 @@ if (btnWhatsapp1) {
 if (btnWhatsapp2) {
   btnWhatsapp2.href = whatsappLink;
 }
+
