@@ -1,227 +1,135 @@
-/* ---------------------------------------------------
-   RESET BÁSICO
---------------------------------------------------- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+/* ================================================
+   Admin Panel - Customizações Bootstrap
+   ================================================ */
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
 }
 
-body {
-  background: #f5f6fa;
-  color: #333;
-}
-
-/* ---------------------------------------------------
-   HEADER PADRÃO (igual ao index)
---------------------------------------------------- */
-header {
-  background: #ffffff;
-  padding: 15px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 40px;
-}
-
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.header-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  cursor: pointer;
-  font-size: 26px;
-  font-weight: bold;
-  color: #0f62fe;
-}
-
-nav a {
-  text-decoration: none;
-  margin-left: 20px;
-  color: #333;
-  font-weight: 600;
-  font-size: 15px;
-}
-
-nav a:hover {
-  color: #0f62fe;
-}
-
-/* ---------------------------------------------------
-   LOGIN
---------------------------------------------------- */
-.login-container {
-  max-width: 350px;
-  margin: 40px auto;
-}
-
-.login-card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-
-.login-card h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #0f62fe;
-}
-
-.senha-wrapper {
-  /*display: flex;*/
-  gap: 10px;
-}
-
-.btn-eye {
-  /*width: auto;*/
-  padding: 10px 14px;
-  background: #0f62fe;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.btn-eye:hover {
-  opacity: 0.9;
-}
-
-/* ---------------------------------------------------
-   FORMULÁRIOS GERAIS
---------------------------------------------------- */
-
-input, textarea {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-  outline: none;
-}
-
-input:focus, textarea:focus {
-  border-color: #0f62fe;
-  box-shadow: 0 0 6px rgba(15,98,254, 0.3);
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background: #0f62fe;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  transition: 0.2s;
-  margin-top: 10px;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-button:active {
-  transform: scale(0.97);
-}
-
-/* ---------------------------------------------------
-   BOTÕES SECUNDÁRIOS (home/sair)
---------------------------------------------------- */
-
-.btn-home {
-  background: #777;
-}
-
-.btn-sair {
-  background: #ff4d4d;
-}
-
-/* ---------------------------------------------------
-   ADMIN PAGE
---------------------------------------------------- */
-
-.admin-container {
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
+/* Cards hover */
 .card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin-bottom: 30px;
+  transition: box-shadow 0.3s ease;
 }
 
-.card h2 {
-  color: #0f62fe;
+.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
 }
 
-/* ---------------------------------------------------
-   LISTA DE PRODUTOS
---------------------------------------------------- */
-
-.produto-item {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.produto-item img {
-  width: 100px;
-  margin-top: 8px;
+/* Table image */
+.table img {
+  width: 50px;
+  height: 40px;
+  object-fit: cover;
   border-radius: 6px;
 }
 
-.actions {
-  margin-top: 10px;
+/* Table rows */
+.table tbody tr {
+  transition: background-color 0.2s ease;
 }
 
-.actions button {
-  width: auto;
-  padding: 8px 12px;
-  display: inline-block;
-  margin-right: 8px;
+/* Action buttons */
+.btn-action {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ---------------------------------------------------
-   RESPONSIVIDADE
---------------------------------------------------- */
-
-@media (max-width: 600px) {
-
-  nav a {
-    margin-left: 10px;
-    font-size: 14px;
-  }
-
-  .produto-item img {
-    width: 70px;
-  }
-
-  .container {
-    width: 92%;
-  }
-
+/* Mensagem não lida */
+.mensagem-nao-lida {
+  border-left: 4px solid #f59e0b !important;
+  background-color: rgba(245, 158, 11, 0.05);
 }
 
-.mensagem-card {
-  background: #f9f9f9;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  font-size: 14px;
+.mensagem-nao-lida .accordion-button {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+/* Accordion customizado */
+.accordion-button:not(.collapsed) {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: inherit;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.25);
+}
+
+/* Stats cards */
+.card.bg-success.bg-opacity-10 {
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.card.bg-primary.bg-opacity-10 {
+  border-color: rgba(13, 110, 253, 0.3) !important;
+}
+
+.card.bg-warning.bg-opacity-10 {
+  border-color: rgba(255, 193, 7, 0.3) !important;
+}
+
+/* SweetAlert Dark Theme */
+.swal2-popup {
+  background: var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+.swal2-title {
+  color: var(--bs-body-color) !important;
+}
+
+.swal2-html-container {
+  color: var(--bs-secondary-color) !important;
+}
+
+/* Loading overlay for form */
+.form-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.form-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 3px solid rgba(16, 185, 129, 0.3);
+  border-top-color: #10b981;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--bs-secondary-color);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-header h5 {
+    font-size: 1rem;
+  }
+  
+  .table td, .table th {
+    font-size: 0.875rem;
+  }
 }
