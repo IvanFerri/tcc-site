@@ -1,132 +1,155 @@
-// 🔹 Firebase base
+// ===============================
+// IMPORTAÇÕES FIREBASE
+// ===============================
 import { auth, db } from "./firebase.js";
-
-// 🔹 Auth
 import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-// 🔹 Firestore
 import {
   collection,
   addDoc,
   getDocs,
   deleteDoc,
-  doc,
-  query,
-  orderBy,
-  Timestamp
+  doc
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-/* ===============================
-   PROTEÇÃO DA ÁREA ADMIN
-================================ */
+// ===============================
+// PROTEÇÃO DA PÁGINA ADMIN
+// ===============================
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.href = "login.html";
   }
 });
 
-/* ===============================
-   CADASTRO DE PRODUTOS
-================================ */
-const formProduto = document.getElementById("form-produto");
-const listaProdutos = document.getElementById("lista-produtos");
+// ===============================
+// FUNÇÃO DE RESIZE DA IMAGEM
+// ===============================
+function resizeImage(file, maxWidth = 400, quality = 0.8) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const img = new Image();
+      img.src = e.target.result;
+
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        const scale = maxWidth / img.width;
+        const width = maxWidth;
+        const height = img.height * scale;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const resizedBase64 = canvas.toDataURL("image/jpeg", quality);
+        resolve(resizedBase64);
+      };
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+// ===============================
+// CADASTRAR PRODUTO
+// ===============================
+const formProduto = document.getElementById("formProduto");
 
 if (formProduto) {
   formProduto.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const nome = document.getElementById("nome-produto").value;
-    const descricao = document.getElementById("descricao-produto").value;
-    const imagem = document.getElementById("imagem-produto").value;
+    const nome = document.getElementById("nomeProduto").value;
+    const descricao = document.getElementById("descricaoProduto").value;
+    const preco = document.getElementById("precoProduto").value;
+    const imagemInput = document.getElementById("imagemProduto");
+    const file = imagemInput.files[0];
+
+    if (!file) {
+      alert("Selecione uma imagem");
+      return;
+    }
 
     try {
+      const imagemBase64 = await resizeImage(file);
+
       await addDoc(collection(db, "produtos"), {
         nome,
         descricao,
-        imagem,
-        criadoEm: Timestamp.now()
+        preco,
+        imagem: imagemBase64,
+        criadoEm: new Date()
       });
 
       alert("Produto cadastrado com sucesso!");
       formProduto.reset();
-      carregarProdutos();
+      listarProdutos();
 
     } catch (error) {
-      console.error("Erro ao cadastrar produto:", error);
-      alert("Erro ao cadastrar produto");
+      console.error("Erro ao salvar produto:", error);
+      alert("Erro ao salvar produto");
     }
   });
 }
 
-async function carregarProdutos() {
-  if (!listaProdutos) return;
+// ===============================
+// LISTAR PRODUTOS
+// ===============================
+async function listarProdutos() {
+  const lista = document.getElementById("listaProdutos");
+  if (!lista) return;
 
-  listaProdutos.innerHTML = "";
+  lista.innerHTML = "";
 
-  const snapshot = await getDocs(collection(db, "produtos"));
+  const querySnapshot = await getDocs(collection(db, "produtos"));
 
-  snapshot.forEach(docSnap => {
-    const p = docSnap.data();
+  querySnapshot.forEach((docSnap) => {
+    const produto = docSnap.data();
 
     const div = document.createElement("div");
     div.classList.add("produto-admin");
 
     div.innerHTML = `
-      <strong>${p.nome}</strong>
-      <p>${p.descricao}</p>
-      <img src="${p.imagem}" width="100">
+      <img src="${produto.imagem}" alt="${produto.nome}">
+      <h4>${produto.nome}</h4>
+      <p>${produto.descricao}</p>
+      <p><strong>R$ ${produto.preco}</strong></p>
+      <button onclick="excluirProduto('${docSnap.id}')">Excluir</button>
     `;
 
-    listaProdutos.appendChild(div);
+    lista.appendChild(div);
   });
 }
 
-carregarProdutos();
-
-/* ===============================
-   MENSAGENS RECEBIDAS
-================================ */
-async function carregarMensagens() {
-  const lista = document.getElementById("mensagens-lista");
-  if (!lista) return;
-
-  const q = query(
-    collection(db, "mensagens"),
-    orderBy("data", "desc")
-  );
-
-  const snapshot = await getDocs(q);
-
-  if (snapshot.empty) {
-    lista.innerHTML = "<p>Nenhuma mensagem recebida.</p>";
-    return;
+// ===============================
+// EXCLUIR PRODUTO
+// ===============================
+window.excluirProduto = async function (id) {
+  if (confirm("Deseja excluir este produto?")) {
+    await deleteDoc(doc(db, "produtos", id));
+    listarProdutos();
   }
+};
 
-  lista.innerHTML = "";
+// ===============================
+// LOGOUT
+// ===============================
+const btnSair = document.getElementById("btnSair");
 
-  snapshot.forEach(docSnap => {
-    const m = docSnap.data();
-
-    lista.innerHTML += `
-      <div class="mensagem-card">
-        <strong>Nome:</strong> ${m.nome}<br>
-        <strong>Email:</strong> ${m.email}<br>
-        <p>${m.mensagem}</p>
-        <small>${m.data?.toDate().toLocaleString("pt-BR")}</small>
-      </div>
-    `;
+if (btnSair) {
+  btnSair.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "login.html";
   });
 }
 
-carregarMensagens();
-
-/* ===============================
-   LOGOUT
-================================ */
-window.sair = async function () {
-  await signOut(auth);
-  window.location.href = "login.html";
-};
+// ===============================
+// INICIALIZA LISTAGEM
+// ===============================
+listarProdutos();
