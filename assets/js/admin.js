@@ -370,10 +370,6 @@ async function carregarMensagens() {
                   <i class="bi bi-check2 me-1"></i>Marcar como lida
                 </button>
               ` : ''}
-              <a href="https://wa.me/${m.email?.includes('@') ? '' : m.email}?text=${whatsappMsg}" 
-                target="_blank" class="btn btn-sm btn-outline-success">
-                <i class="bi bi-whatsapp me-1"></i>Responder
-              </a>
               <button class="btn btn-sm btn-outline-danger" onclick="excluirMensagem('${id}')">
                 <i class="bi bi-trash me-1"></i>Excluir
               </button>
