@@ -1,5 +1,6 @@
 /* ================================================
-   Gráfica VIP - Customizações com Bootstrap
+   Gráfica VIP - Customizações Bootstrap
+   Apenas sobrescritas mínimas para personalização
    ================================================ */
 
 /* Cor accent verde customizada */
@@ -155,4 +156,3 @@ html {
 footer a:hover {
   color: #10b981 !important;
 }
-

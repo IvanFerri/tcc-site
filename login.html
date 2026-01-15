@@ -74,23 +74,21 @@
           <p class="text-body-secondary mt-2">Área Administrativa</p>
         </div>
         
-        <!-- Formulário de Login e Senha -->
+        <!-- Form -->
         <form id="formLogin">
           <div class="form-floating mb-3">
             <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
             <label for="email"><i class="bi bi-envelope me-2"></i>E-mail</label>
           </div>
           
-          <div class="form-floating mb-4">
-            <div class="password-wrapper">
-              <input type="password" class="form-control" id="senha" placeholder="Senha" required>
-              <button type="button" class="btn-password-toggle" onclick="toggleSenha()" title="Mostrar/ocultar senha">
+          <div class="mb-4">
+            <label for="senha" class="form-label"><i class="bi bi-lock me-2"></i>Senha</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
+              <button type="button" class="btn btn-outline-secondary" onclick="toggleSenha()" title="Mostrar/ocultar senha">
                 <i class="bi bi-eye" id="eyeIcon"></i>
               </button>
             </div>
-            <label for="senha" style="position: relative; top: -48px; left: 0;">
-              <i class="bi bi-lock me-2"></i>Senha
-            </label>
           </div>
           
           <button type="submit" class="btn btn-success btn-lg w-100 mb-3" id="btnLogin">
@@ -107,7 +105,7 @@
       </div>
     </div>
     
-    <!-- Rodapé -->
+    <!-- Footer -->
     <p class="text-center text-body-secondary mt-4 small">
       © 2025 Gráfica VIP — Projeto TCC
     </p>
@@ -115,7 +113,7 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Biblioteca de Alerta -->
+  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- App Script -->
   <script type="module" src="assets/js/login.js"></script>
