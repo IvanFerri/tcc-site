@@ -1,6 +1,5 @@
 /**
  * Admin Panel - Gráfica VIP
- * CRUD completo com SweetAlert2
  */
 
 import { auth, db } from "./firebase.js";
@@ -22,7 +21,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
 // ============================================
-// Toast Helper (SweetAlert2)
+// Notificações Temporárias
 // ============================================
 const Toast = Swal.mixin({
   toast: true,
@@ -33,7 +32,7 @@ const Toast = Swal.mixin({
 });
 
 // ============================================
-// Auth Protection
+// Autenticação
 // ============================================
 onAuthStateChanged(auth, (user) => {
   if (!user) {
